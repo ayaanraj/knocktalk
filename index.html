@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knocktalk</title>
+</head>
+
+<body>
+
+    <script>
+
+        const ws = new WebSocket('ws://localhost:9000');
+
+        ws.addEventListener('open', function opened() {
+            console.log('Connected to server');
+
+            ws.send('hello Server');
+        })
+
+        ws.addEventListener('message', function incoming({ data }) {
+            console.log('Message Received :', data)
+        })
+
+        ws.addEventListener('error', function error(err) {
+            console.log('Error : ', err)
+        })
+
+        ws.addEventListener('close', function closed(close) {
+            console.log('Closed : ', close);
+        })
+
+    </script>
+
+</body>
+
+</html>
